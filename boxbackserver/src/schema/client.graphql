@@ -1,0 +1,35 @@
+type Client {
+	id: ID! @unique
+	clientCode: String
+	clientName: String
+	description: String
+	clientPhone: String
+	clientEmailAddress: String
+	clientAddress: String
+	clientContact: String
+	clientKraPin: String
+}
+type Query {
+	getAllClients: [Client]
+}
+type Mutation {
+	addClient(
+		clientCode: String!
+		clientName: String!
+		clientPhone: String
+		clientEmailAddress: String!
+		clientAddress: String!
+		clientContact: String!
+		clientKraPin: String
+	): Boolean
+	editClient(
+		id: ID!
+		clientCode: String!
+		clientName: String!
+		clientPhone: String
+		clientEmailAddress: String
+		clientAddress: String
+		clientContact: String
+		clientKraPin: String
+	): Boolean
+}

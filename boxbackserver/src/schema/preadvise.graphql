@@ -1,0 +1,275 @@
+type PreadviseTransaction {
+	id: ID! @unique
+	clientCode: String
+	clientEmail: String
+	fileBillingNumber: String
+	preAdviseNum: String
+	containerNum: String
+	containerCode: String
+	containerSize: String
+	containerSizeType: String
+	operatorCode: String
+	weight: String
+	eQStatus: String
+	fEStatus: String
+	pOL: String
+	pOD: String
+	vessel: String
+	sOExpiryDate: String
+	preadviseDate: String
+	loadingTime: String
+	outDateICD: String
+	outTimeICD: String
+	modeOfTransportOut: String
+	transportTypeOut: String
+	etaMSA: String
+	wagonNum: String
+	status: String
+
+	inDateICD: String
+	inTimeICD: String
+	etdNbo: String
+	modeOfTransport: String
+	transportType: String
+	carrierID: String
+	modeOfTransportId: String
+	bblEIR: String
+	deliveryDriverName: String
+	deliveryDriverID: String
+	partyDeliveringName: String
+
+	arrivalDateMSA: String
+	inTimeMsa: String
+	arrivalStatus: String
+
+	dateDelivered: String
+	outTimeMsa: String
+	deliveryNoteID: String
+	position: String
+	modeOfTransportIdMsa: String
+	transportTypeOutMsa: String
+	carrierIDOutMsa: String
+	modeOfTransportOutMsa: String
+	truckerDriverName: String
+	truckerDriverID: String
+	truckerName: String
+
+	containerDamages: [ContainerDamages]
+
+	guaranteeForm: String
+	guaranteeFormValidity: String
+
+	eirNum: String
+	eirDate: String
+	invoiceNum: String
+	tractor: String
+	remarks: String
+
+	addedby: User
+	extradetailsBy: User
+	recievedICDBy: User
+	exitICDby: User
+	recievedMSABy: User
+	exitMSABy: User
+	guaranteeBy: User
+	deliverynotemsaby: User
+	invoicedBy: User
+	lastupdatedby: User
+
+	createdAt: String
+	createdTime: String
+	updatedAt: String
+}
+type Response {
+	ok: Boolean
+	message: String
+}
+type containerFreightDetails {
+	daysin: String
+	numberofcontainers: String
+}
+type DaySummary {
+	expected: String
+	inicd: String
+	onrail: String
+	inmombasa: String
+	delivered: String
+	invoiced: String
+}
+type containerSummary {
+	month: String
+	containers: String
+}
+type MonthlySummary {
+	recieved: [containerSummary]
+	delivered: [containerSummary]
+	invoiced: [containerSummary]
+}
+type Query {
+	getPreadvise(id: ID!): PreadviseTransaction
+	getPreadviseByContainer(containerNum: String): PreadviseTransaction
+	getPdfContainers: [PreadviseTransaction]
+	getAllPreadvices: [PreadviseTransaction]
+	getPreadviseCancelled: [PreadviseTransaction]
+	getArrivalContainers: [PreadviseTransaction]
+	getArrivalMbsContainers: [PreadviseTransaction]
+	getDeptMbsContainers: [PreadviseTransaction]
+	getGuarantee: [PreadviseTransaction]
+	getDeliveryMsa: [PreadviseTransaction]
+	getDeliveryNote: [PreadviseTransaction]
+	getInvoice: [PreadviseTransaction]
+	getCodecoFields: [PreadviseTransaction]
+	getToInvoice: [PreadviseTransaction]
+	getInvoiced: [PreadviseTransaction]
+	getWorkDetails: [PreadviseTransaction]
+	getInvoicedReport: [PreadviseTransaction]
+	getArchivedReport(
+		inDateICD: String
+		outTimeICD: String
+		arrivalDateMSA: String
+		dateDelivered: String
+		eQStatus: String
+		fEStatus: String
+		clientCode: String
+		operatorCode: String
+		containerSize: String
+		vessel: String
+		position: String
+	): [PreadviseTransaction]
+	getReportPreadvices(
+		inDateICD: String
+		outTimeICD: String
+		arrivalDateMSA: String
+		dateDelivered: String
+		eQStatus: String
+		fEStatus: String
+		clientCode: String
+		operatorCode: String
+		containerSize: String
+		vessel: String
+		position: String
+	): [PreadviseTransaction]
+	getDaySummary(startDate: String, endDate: String): [DaySummary]
+	getMonthlyContainerSummary: [MonthlySummary]
+	getDaysSinceReceipt: [containerFreightDetails]
+}
+type Mutation {
+	createPreadvise(
+		clientCode: String!
+		containerNum: String!
+		containerSize: String!
+		operatorCode: String!
+		weight: String!
+		eQStatus: String!
+		fEStatus: String!
+		pOL: String!
+		pOD: String!
+		vessel: String!
+
+		sOExpiryDate: String!
+		preadviseDate: String!
+		partyDeliveringName: String!
+	): Response
+
+	editPreadvise(
+		id: ID!
+		clientCode: String
+		fileBillingNumber: String
+		preAdviseNum: String
+		containerNum: String
+		preadviseDate: String!
+		containerSize: String
+		operatorCode: String
+		weight: String
+		eQStatus: String
+		fEStatus: String
+		pOL: String
+		pOD: String
+		vessel: String
+		sOExpiryDate: String
+		preadviseDate: String
+		bblEIR: String
+		deliveryDriverName: String
+		deliveryDriverID: String
+		partyDeliveringName: String
+		deliveryNoteID: String
+		truckerDriverID: String
+		truckerDriverName: String
+		truckerName: String
+		partyDeliveringName: String
+		dateDelivered: String
+		eirNum: String
+		inDateICD: String
+		modeOfTransportId: String
+		outDateICD: String
+		wagonNum: String
+		remarks: String
+		arrivalDateMSA: String
+		modeOfTransportIdMsa: String
+		guaranteeFormValidity: String
+		guaranteeForm: String
+		position: String
+		invoiceNum: String
+	): Boolean
+	updatePreadvise(
+		id: ID!
+		fileBillingNumber: String!
+		preAdviseNum: String!
+	): Boolean
+	arrivalNrb(
+		id: ID!
+		inDateICD: String!
+		inTimeICD: String!
+		etdNbo: String!
+		modeOfTransport: String!
+		transportType: String!
+		carrierID: String!
+		modeOfTransportId: String!
+		bblEIR: String!
+		deliveryDriverName: String!
+		deliveryDriverID: String!
+	): Boolean
+
+	departureNrb(
+		id: ID!
+		loadingTime: String!
+		outTimeICD: String!
+		modeOfTransportOut: String!
+		transportTypeOut: String!
+		etaMSA: String!
+		wagonNum: String!
+		status: String!
+	): Boolean
+
+	arrivalMsa(
+		id: ID!
+		arrivalDateMSA: String!
+		inTimeMsa: String!
+		arrivalStatus: String!
+	): Boolean
+
+	deliveryContainer(
+		id: ID!
+		dateDelivered: String!
+		outTimeMsa: String!
+
+		position: String!
+		modeOfTransportIdMsa: String!
+		transportTypeOutMsa: String!
+		carrierIDOutMsa: String!
+		modeOfTransportOutMsa: String!
+		truckerDriverName: String!
+		truckerDriverID: String!
+	): Boolean
+
+	updateGuarantee(
+		id: ID!
+		guaranteeForm: String!
+		guaranteeFormValidity: String!
+		remarks: String
+	): Boolean
+
+	updateAdminMombasa(id: ID!, eirNum: String, eirDate: String): Boolean
+	updateInvoice(id: ID!, invoiceNum: String!): Boolean
+	removePreadvise(id: ID!): Boolean
+}

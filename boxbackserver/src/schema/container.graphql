@@ -1,0 +1,26 @@
+type Container {
+	id: ID! @unique
+	containerCode: String
+	description: String
+	containerSize: String
+}
+
+type Query {
+	getAllContainers: [Container]
+}
+
+type Mutation {
+	addContainer(
+		containerCode: String!
+		description: String!
+		containerSize: String!
+	): Boolean
+	editContainer(
+		id: ID!
+		containerCode: String
+		description: String
+		containerSize: String
+	): Boolean
+
+	removeContainer(id: ID!): Boolean
+}

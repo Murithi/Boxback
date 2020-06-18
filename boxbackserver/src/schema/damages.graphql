@@ -1,0 +1,28 @@
+type Damages {
+	id: ID! @unique
+	repairCode: String
+	description: String
+	manhours: Float
+	materialCost: Int
+}
+
+type Query {
+	getAllDamages: [Damages]
+	getDamage: [Damages]
+}
+
+type Mutation {
+	addDamage(
+		repairCode: String!
+		description: String!
+		manhours: Float!
+		materialCost: Int!
+	): Boolean
+	editDamage(
+		id: ID!
+		repairCode: String
+		description: String
+		manhours: Float
+		materialCost: Int
+	): Boolean
+}

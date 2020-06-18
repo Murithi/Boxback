@@ -1,0 +1,56 @@
+type AuthPayload {
+	ok: Boolean!
+	token: String
+	refreshToken: String
+	user: User
+	errors: [Error!]
+}
+
+enum USERROLE {
+	CUSTOMERSERVICEMSA
+	CUSTOMERSERVICENRB
+	OPERATIONSNRB
+	OPERATIONSMSA
+	SUPERVISOR
+	ACCOUNTANT
+	SUPERUSER
+	DIRECTOR
+	ADMIN
+}
+
+type User {
+	id: ID! @unique
+	email: String! @unique
+	password: String!
+	name: String!
+	locked: Boolean
+	confirmed: Boolean
+	authorized: Boolean
+	role: String
+
+	createdAt: String!
+	updatedAt: String!
+}
+type Query {
+	userFeed(filter: String, first: Int, skip: Int): [User!]!
+	user(id: ID!): User
+	me: User
+}
+
+type Mutation {
+	signup(
+		firstName: String!
+		lastName: String!
+		email: String!
+		userRole: String!
+		password: String!
+	): AuthPayload!
+	editUser(
+		id: ID!
+		email: String
+		userRole: String
+		confirmed: Boolean
+	): Boolean
+	login(email: String!, password: String!): AuthPayload!
+	changePassword(password: String!, userId: ID): AuthPayload!
+}

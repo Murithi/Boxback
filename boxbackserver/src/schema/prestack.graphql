@@ -1,0 +1,15 @@
+type PrestackCompany {
+	id: ID! @unique
+	clientName: String!
+	clientCode: String!
+}
+
+type Query {
+	getAllPrestackFeed: [PrestackCompany]
+}
+
+type Mutation {
+	addPrestack(clientName: String!, clientCode: String!): Boolean
+	editPrestack(id: ID!, clientName: String!, clientCode: String!): Boolean
+	removePrestack(id: ID!): Boolean
+}

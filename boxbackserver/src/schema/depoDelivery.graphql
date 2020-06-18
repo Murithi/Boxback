@@ -1,0 +1,15 @@
+type DeliveryDepo {
+	id: ID! @unique
+	clientName: String!
+	clientCode: String!
+}
+
+type Query {
+	getAllDeliveryDepoFeed: [DeliveryDepo]
+}
+
+type Mutation {
+	addDepoDelivery(clientName: String!, clientCode: String!): Boolean
+	editDepoDelivery(id: ID!, clientName: String!, clientCode: String!): Boolean
+	removeDepoDelivery(id: ID!): Boolean
+}

@@ -1,0 +1,25 @@
+type ContainerDamages {
+	id: ID
+	BLNumber: ID @unique
+	repair: Damages
+}
+
+type Query {
+	getAllContainerDamages: [ContainerDamages]
+	getContainerDamages: [ContainerDamages]
+}
+
+type Mutation {
+	addContainerDamages(
+		DamageCode: ID
+		BLNumber: ID
+		containerNum: String
+		preadviseNum: String
+	): Boolean
+	editContainerDamages(
+		id: ID
+		DamageCode: ID
+		BLNumber: ID
+		containerNum: String
+	): Boolean
+}

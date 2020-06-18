@@ -1,0 +1,38 @@
+type Trucker {
+	id: ID! @unique
+	truckerName: String!
+	truckerLongName: String!
+	truckerCode: String!
+	telNo: String
+	faxNo: String
+	zipCode: String
+	address: String
+}
+
+type Query {
+	getAllTruckers: [Trucker]
+}
+
+type Mutation {
+	addTrucker(
+		truckerName: String!
+		truckerLongName: String!
+		truckerCode: String!
+		telNo: String
+		faxNo: String
+		zipCode: String
+		address: String
+	): Boolean
+	editTrucker(
+		id: ID!
+		truckerName: String
+		truckerLongName: String
+		truckerCode: String
+		telNo: String
+		faxNo: String
+		zipCode: String
+		address: String
+	): Boolean
+
+	removeTrucker(id: ID!): Boolean
+}

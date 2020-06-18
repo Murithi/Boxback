@@ -1,0 +1,13 @@
+type Operator {
+	id: ID! @unique
+	operatorCode: String!
+	operatorName: String
+}
+type Query {
+	getAllOperators: [Operator]
+}
+type Mutation {
+	addOperator(operatorCode: String!, operatorName: String!): Boolean!
+	editOperator(id: ID!, operatorCode: String!, operatorName: String!): Boolean!
+	removeOperator(id: ID!): Boolean!
+}
