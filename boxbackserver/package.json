@@ -42,7 +42,7 @@
 		"moment": "^2.22.2",
 		"nodemailer": "^6.3.0",
 		"pg": "^7.6.0",
-		"sequelize": "^4.38.0",
+		"sequelize": "^5.15.1",
 		"sequelize-version": "^0.0.58",
 		"uuid": "^3.3.2"
 	}
